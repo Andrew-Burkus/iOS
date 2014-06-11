@@ -7,7 +7,9 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "Character.h"
+#import "playerSpriteNode.h"
 
-@interface spriteMyScene : SKScene
+@interface GameScene : SKScene
 
 @end

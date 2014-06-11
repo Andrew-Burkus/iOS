@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 
-@interface spriteViewController : UIViewController
+@interface ViewController : UIViewController
 
 @end

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F659FDE1948C55F00B5C8EE /* playerSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F659FDD1948C55F00B5C8EE /* playerSpriteNode.m */; };
+		3F29602F194A41E700B07E92 /* dPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F29602E194A41E700B07E92 /* dPad.m */; };
+		3F659FDE1948C55F00B5C8EE /* playerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F659FDD1948C55F00B5C8EE /* playerNode.m */; };
 		3FB6D86D194699D70002A368 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86C194699D70002A368 /* Foundation.framework */; };
 		3FB6D86F194699D70002A368 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86E194699D70002A368 /* CoreGraphics.framework */; };
 		3FB6D871194699D70002A368 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D870194699D70002A368 /* UIKit.framework */; };
@@ -19,7 +20,6 @@
 		3FB6D885194699D80002A368 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FB6D883194699D80002A368 /* Main_iPad.storyboard */; };
 		3FB6D888194699D80002A368 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6D887194699D80002A368 /* ViewController.m */; };
 		3FB6D88B194699D80002A368 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6D88A194699D80002A368 /* GameScene.m */; };
-		3FB6D88D194699D80002A368 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB6D88C194699D80002A368 /* Spaceship.png */; };
 		3FB6D88F194699D80002A368 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FB6D88E194699D80002A368 /* Images.xcassets */; };
 		3FB6D896194699D80002A368 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D895194699D80002A368 /* XCTest.framework */; };
 		3FB6D897194699D80002A368 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86C194699D70002A368 /* Foundation.framework */; };
@@ -41,8 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F659FDC1948C55F00B5C8EE /* playerSpriteNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerSpriteNode.h; sourceTree = "<group>"; };
-		3F659FDD1948C55F00B5C8EE /* playerSpriteNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerSpriteNode.m; sourceTree = "<group>"; };
+		3F29602D194A41E700B07E92 /* dPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dPad.h; sourceTree = "<group>"; };
+		3F29602E194A41E700B07E92 /* dPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dPad.m; sourceTree = "<group>"; };
+		3F659FDC1948C55F00B5C8EE /* playerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerNode.h; sourceTree = "<group>"; };
+		3F659FDD1948C55F00B5C8EE /* playerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerNode.m; sourceTree = "<group>"; };
 		3FB6D869194699D70002A368 /* Adventures of Turing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adventures of Turing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB6D86C194699D70002A368 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3FB6D86E194699D70002A368 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,7 +62,6 @@
 		3FB6D887194699D80002A368 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3FB6D889194699D80002A368 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		3FB6D88A194699D80002A368 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		3FB6D88C194699D80002A368 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		3FB6D88E194699D80002A368 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3FB6D894194699D80002A368 /* Adventures of TuringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adventures of TuringTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB6D895194699D80002A368 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -142,9 +143,10 @@
 				3FB6D88A194699D80002A368 /* GameScene.m */,
 				3FCF9B6E1947431500AA8FC5 /* Character.h */,
 				3FCF9B6F1947431500AA8FC5 /* Character.m */,
-				3F659FDC1948C55F00B5C8EE /* playerSpriteNode.h */,
-				3F659FDD1948C55F00B5C8EE /* playerSpriteNode.m */,
-				3FB6D88C194699D80002A368 /* Spaceship.png */,
+				3F659FDC1948C55F00B5C8EE /* playerNode.h */,
+				3F659FDD1948C55F00B5C8EE /* playerNode.m */,
+				3F29602D194A41E700B07E92 /* dPad.h */,
+				3F29602E194A41E700B07E92 /* dPad.m */,
 				3FB6D88E194699D80002A368 /* Images.xcassets */,
 				3FB6D875194699D80002A368 /* Supporting Files */,
 				3FCF9B7119475DE300AA8FC5 /* backGroundLayer.h */,
@@ -259,7 +261,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FB6D88D194699D80002A368 /* Spaceship.png in Resources */,
 				3FB6D88F194699D80002A368 /* Images.xcassets in Resources */,
 				3FB6D885194699D80002A368 /* Main_iPad.storyboard in Resources */,
 				3FB6D882194699D80002A368 /* Main_iPhone.storyboard in Resources */,
@@ -284,11 +285,12 @@
 			files = (
 				3FCF9B701947431500AA8FC5 /* Character.m in Sources */,
 				3FB6D888194699D80002A368 /* ViewController.m in Sources */,
-				3F659FDE1948C55F00B5C8EE /* playerSpriteNode.m in Sources */,
+				3F659FDE1948C55F00B5C8EE /* playerNode.m in Sources */,
 				3FB6D88B194699D80002A368 /* GameScene.m in Sources */,
 				3FB6D87B194699D80002A368 /* main.m in Sources */,
 				3FB6D87F194699D80002A368 /* spriteAppDelegate.m in Sources */,
 				3FCF9B7319475DE300AA8FC5 /* backGroundLayer.m in Sources */,
+				3F29602F194A41E700B07E92 /* dPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,9 +10,6 @@
 
 @interface Character ()
 
-#pragma- mark Protected Values
-@property uint32_t characterPhysics;
-
 @property NSNumber * DEFAULT_DAMAGE;
 
 @property CGVector DEFAULT_RUNNING_VELOCITY;
@@ -35,25 +32,26 @@
     
     if(self) {
         
-        self.characterPhysics = 0x1 << 0;
-        
         [self setScale:0.5];
         
-#pragma - mark "Physics init"
+    #pragma - mark "Physics init"
         
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
-        self.physicsBody.dynamic = YES;
-        self.physicsBody.contactTestBitMask = self.characterPhysics;
-        self.physicsBody.collisionBitMask = 0;
-        self.physicsBody.usesPreciseCollisionDetection = YES;
-        self.physicsBody.affectedByGravity = YES;
         
-#pragma - mark "Default Values"
+        self.physicsBody.dynamic = YES;
+        
+        self.physicsBody.affectedByGravity = NO;
+        
+    #pragma - mark "Default Values"
         
         self.DEFAULT_DAMAGE = [NSNumber numberWithInt:33];
+        
         self.DEFAULT_RUNNING_VELOCITY = CGVectorMake(10.0, 0.0);
+        
         self.DEFAULT_MOVE_RIGHT = [SKAction moveBy:self.DEFAULT_RUNNING_VELOCITY duration:0.2];
+        
         self.DEFAULT_MOVE_LEFT = [SKAction moveBy:CGVectorMake(-10.0, 0.0) duration:0.2];
+        
         self.DEFAULT_JUMP = [SKAction moveBy:CGVectorMake(0.0, 20.0) duration:0.2];
         
     }
@@ -61,6 +59,21 @@
     return self;
 }
 
+- (void)replyToTap:(UITouch *)touch withLocation:(CGPoint)location {
+    
+    [self setPosition:location];//for testing, need change
+}
 
+- (BOOL)hasHit:(Character *)other {
+    return true;
+}
+
+- (BOOL)isTouchingBorder:(SKScene *)scene {
+    return true;
+}
+
+- (int)isInSection:(SKScene *)scene {
+    return 0;
+}
 
 @end

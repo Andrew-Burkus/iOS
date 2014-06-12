@@ -8,7 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Character.h"
-#import "playerSpriteNode.h"
+#import "playerNode.h"
+#import "dPad.h"
 
 @interface GameScene : SKScene
 

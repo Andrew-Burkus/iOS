@@ -17,18 +17,19 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    GameScene *scene = [[GameScene alloc] initWithSize:CGSizeMake(768,1024)];
+    GameScene *scene = [[GameScene alloc] initWithSize:self.view.bounds.size];
     SKView *spriteView = (SKView *) self.view;
     
     [spriteView presentScene: scene];
+    
+    [super viewWillLayoutSubviews];
 }
 
 -(BOOL)prefersStatusBarHidden {
     return YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }

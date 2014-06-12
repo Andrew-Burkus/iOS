@@ -12,63 +12,56 @@
 
 @property BOOL contentCreated;
 
+@property playerNode *user;
+
+@property dPad *controls;
+
 @end
 
 
-@implementation GameScene {
-    
-}
-    
+@implementation GameScene
+
 -(id)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        //self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        self.user = [[playerNode alloc] init];
         
-        //SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        //myLabel.text = @"Hello, World!";
-        //myLabel.fontSize = 30;
-        //myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-         //                              CGRectGetMidY(self.frame));
-        
+        self.controls = [[dPad alloc] initWithImageNamed:@"D_PAD_Circle"];
     }
     
     return self;
     
 }
 
+#pragma - mark Content Creation & View Confirm
+
 - (void)didMoveToView: (SKView *) view {
     
     if (!self.contentCreated) {
+        
         [self createSceneContents];
-        self.contentCreated = YES;
+        
+            self.contentCreated = YES;
+        
     }
+    
 }
 
 #pragma - mark Content Creation
+
 - (void)createSceneContents {
     
-    self.scaleMode = SKSceneScaleModeAspectFit;
+    [self addChild:self.user];
+
     
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
-    
-    playerSpriteNode *player = [[playerSpriteNode alloc] initWithImage:@"Base_Model_Enemy"];
-    
-    [player setPosition:location];
-    
-    [self addChild:player];
-}
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    
 }
 
 @end

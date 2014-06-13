@@ -14,4 +14,12 @@
 
 - (id)initPlayerWithImage:(NSString *)imageName andName:(NSString *)name;
 
+@property (nonatomic, strong) NSArray *jumpTextures;
+
+@property (strong, nonatomic) SKAction *runForward;
+
+@property (strong, nonatomic) SKAction *runBackward;
+
+@property (strong, nonatomic) SKAction *idle;
+
 @end

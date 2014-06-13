@@ -59,11 +59,6 @@
     return self;
 }
 
-- (void)replyToTap:(UITouch *)touch withLocation:(CGPoint)location {
-    
-    [self setPosition:location];//for testing, need change
-}
-
 - (BOOL)hasHit:(Character *)other {
     return true;
 }

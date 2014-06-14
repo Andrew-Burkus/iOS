@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Character.h"
-#import "playerNode.h"
+#import "playerTextures.h"
 
 @interface GameScene : SKScene
 

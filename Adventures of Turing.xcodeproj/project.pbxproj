@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F659FDE1948C55F00B5C8EE /* playerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F659FDD1948C55F00B5C8EE /* playerNode.m */; };
+		3F659FDE1948C55F00B5C8EE /* playerTextures.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F659FDD1948C55F00B5C8EE /* playerTextures.m */; };
 		3FB6D86D194699D70002A368 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86C194699D70002A368 /* Foundation.framework */; };
 		3FB6D86F194699D70002A368 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86E194699D70002A368 /* CoreGraphics.framework */; };
 		3FB6D871194699D70002A368 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D870194699D70002A368 /* UIKit.framework */; };
@@ -40,8 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F659FDC1948C55F00B5C8EE /* playerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerNode.h; sourceTree = "<group>"; };
-		3F659FDD1948C55F00B5C8EE /* playerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerNode.m; sourceTree = "<group>"; };
+		3F659FDC1948C55F00B5C8EE /* playerTextures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerTextures.h; sourceTree = "<group>"; };
+		3F659FDD1948C55F00B5C8EE /* playerTextures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerTextures.m; sourceTree = "<group>"; };
 		3FB6D869194699D70002A368 /* Adventures of Turing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adventures of Turing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB6D86C194699D70002A368 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3FB6D86E194699D70002A368 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,8 +140,8 @@
 				3FB6D88A194699D80002A368 /* GameScene.m */,
 				3FCF9B6E1947431500AA8FC5 /* Character.h */,
 				3FCF9B6F1947431500AA8FC5 /* Character.m */,
-				3F659FDC1948C55F00B5C8EE /* playerNode.h */,
-				3F659FDD1948C55F00B5C8EE /* playerNode.m */,
+				3F659FDC1948C55F00B5C8EE /* playerTextures.h */,
+				3F659FDD1948C55F00B5C8EE /* playerTextures.m */,
 				3FB6D88E194699D80002A368 /* Images.xcassets */,
 				3FB6D875194699D80002A368 /* Supporting Files */,
 				3FCF9B7119475DE300AA8FC5 /* backGroundLayer.h */,
@@ -227,6 +227,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Andrew-Burkus";
 				TargetAttributes = {
+					3FB6D868194699D70002A368 = {
+						DevelopmentTeam = AL5F4P23U2;
+					};
 					3FB6D893194699D80002A368 = {
 						TestTargetID = 3FB6D868194699D70002A368;
 					};
@@ -280,7 +283,7 @@
 			files = (
 				3FCF9B701947431500AA8FC5 /* Character.m in Sources */,
 				3FB6D888194699D80002A368 /* ViewController.m in Sources */,
-				3F659FDE1948C55F00B5C8EE /* playerNode.m in Sources */,
+				3F659FDE1948C55F00B5C8EE /* playerTextures.m in Sources */,
 				3FB6D88B194699D80002A368 /* GameScene.m in Sources */,
 				3FB6D87B194699D80002A368 /* main.m in Sources */,
 				3FB6D87F194699D80002A368 /* spriteAppDelegate.m in Sources */,
@@ -419,9 +422,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Adventures of Turing/Adventures of Turing-Prefix.pch";
 				INFOPLIST_FILE = "Adventures of Turing/Adventures of Turing-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -434,9 +439,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Adventures of Turing/Adventures of Turing-Prefix.pch";
 				INFOPLIST_FILE = "Adventures of Turing/Adventures of Turing-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5C832BA2-01D6-47BD-8814-9A47DDB64E50</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Adventures of Turing</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>BC8104C3-1A20-4160-A644-9AFE60FC2DDC</key>
+		<string>ssh://github.com/Andrew-Burkus/iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Adventures of Turing.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>BC8104C3-1A20-4160-A644-9AFE60FC2DDC</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/Andrew-Burkus/iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>BC8104C3-1A20-4160-A644-9AFE60FC2DDC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BC8104C3-1A20-4160-A644-9AFE60FC2DDC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Adventures of Turing</string>
+		</dict>
+	</array>
+</dict>
+</plist>

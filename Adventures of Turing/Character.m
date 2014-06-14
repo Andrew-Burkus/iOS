@@ -40,7 +40,7 @@
         
         self.physicsBody.dynamic = YES;
         
-        self.physicsBody.affectedByGravity = NO;
+        self.physicsBody.affectedByGravity = YES;
         
     #pragma - mark "Default Values"
         

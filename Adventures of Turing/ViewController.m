@@ -15,14 +15,18 @@
 
 @implementation ViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    GameScene *scene = [[GameScene alloc] initWithSize:self.view.bounds.size];
-    SKView *spriteView = (SKView *) self.view;
-    
-    [spriteView presentScene: scene];
+- (void)viewWillLayoutSubviews {
     
     [super viewWillLayoutSubviews];
+    
+    
+    SKView *spriteView = (SKView *) self.view;
+    
+    GameScene *scene = [[GameScene alloc] initWithSize:self.view.bounds.size];
+    
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    [spriteView presentScene: scene];
+    
 }
 
 -(BOOL)prefersStatusBarHidden {

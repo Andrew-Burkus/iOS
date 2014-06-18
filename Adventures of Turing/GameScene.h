@@ -7,8 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Character.h"
-#import "playerTextures.h"
+#import "Chief.h"
+#import "Weapon.h"
 
 @interface GameScene : SKScene
 

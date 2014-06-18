@@ -12,172 +12,70 @@
 
 @property BOOL contentCreated;
 
+- (float)differenceBetweenVectors:(CGPoint)a and:(CGPoint)b;
+
+- (CGPoint)addVectors:(CGPoint)a and:(CGPoint)b;
+
 @end
 
 
 @implementation GameScene {
+    SKSpriteNode *staticBackground;
     
-#pragma - mark "Player Animation Declarations"
+    SKSpriteNode *scrollingBackground;
     
-    SKAction *crouch;
+    SKSpriteNode *mysteryBox;
     
-    SKAction *shoot;
+    SKSpriteNode *sexy;
     
-    SKAction *throw;
+    Chief *chief;
     
-    SKAction *animateForward;
-    
-    SKAction *runsForward;
-    
-    SKAction *animateBackward;
-    
-    SKAction *runsBackwards;
-    
-    SKAction *grenade;
-    
-#pragma - mark "JoyStick Declarations"
-    
-    SKAction *joyStickMovesLeft;
-    
-    SKAction *joyStickMovesRight;
-    
-    SKAction *joyStickDefault;
-    
-#pragma - mark "Button Declarations"
-    
-    SKAction *aButtonDefault;
-    
-    SKAction *aButtonDown;
-    
-    SKAction *bButtonDefault;
-    
-    SKAction *bButtonDown;
+    NSMutableArray *weapons;
 }
 
 -(id)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
-        /* Setup your scene here */
 
-#pragma - mark "Background"
-        SKSpriteNode *background = [SKSpriteNode spriteNodeWithImageNamed:@"Scene2"];
+#pragma mark - Static Background
         
-        [background setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 70)];
+        staticBackground = [SKSpriteNode spriteNodeWithImageNamed:@"USMC"];
         
-        [background setScale:0.6];
+        [staticBackground setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))];
         
-        [self addChild:background];
+        [staticBackground setSize:self.size];
         
-#pragma - mark "Character Setup"
+#pragma mark - Scrolling Background
         
-        playerTextures *playerAnims = [[playerTextures alloc]initPlayerTextures];
+        scrollingBackground = [SKSpriteNode spriteNodeWithImageNamed:@"Covenant"];
         
-        Character *player = [[Character alloc] initWithImage:@"Idle1"];
+        [scrollingBackground setPosition:CGPointMake(CGRectGetMidX(self.frame), self.size.height - 55)];
         
-        [player setName:@"player"];
+        [scrollingBackground setSize:self.size];
         
-        [player setPosition:CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2)];
+        [scrollingBackground setScale:1.0];
         
-        [player setScale:1.0];
+        sexy = [SKSpriteNode spriteNodeWithImageNamed:@"Covenant"];
         
-        [self addChild:player];
+        [sexy setPosition:CGPointMake(CGRectGetMidX(self.frame) + scrollingBackground.frame.size.width, self.size.height - 55)];
         
-#pragma - mark "Player Animation Init"
+        [sexy setSize:self.size];
         
-        animateForward = [SKAction group: @[
-        [SKAction animateWithTextures:playerAnims.walkingTextures timePerFrame:0.33],
-        [SKAction moveByX:10.0 y:0.0 duration:playerAnims.runningTextures.count * 0.33]]];
+        [sexy setScale:1.0];
         
-        runsForward = [SKAction sequence: @[animateForward,
-                            [SKAction setTexture:[player texture]]]];
+#pragma mark - Physics
         
-        animateBackward = [SKAction group: @[
-        [SKAction animateWithTextures:playerAnims.runningTextures timePerFrame:0.33],
-        [SKAction moveByX:-10.0 y:0.0 duration:0.33]
-                                            ]];
-        
-        runsBackwards = [SKAction sequence: @[animateBackward,
-                                [SKAction setTexture:[player texture]]]];
-        
-        crouch = [SKAction animateWithTextures:playerAnims.crouchTextures timePerFrame:0.33];
-        
-        
-#pragma - mark "Grenade Animation"
-        throw = [SKAction animateWithTextures:playerAnims.throwingTextures timePerFrame:0.33];
-        
-        SKAction *moving = [SKAction moveTo:CGPointMake(0, 30)
-                                   duration: 0.033];
-        
-        grenade = [SKAction group: @[
-        [SKAction animateWithTextures:playerAnims.grenadeTextures timePerFrame:0.033],
-            moving]];
-        
-#pragma - mark "JoyStick Setup"
-        
-        SKSpriteNode *joyStick = [[SKSpriteNode alloc] initWithImageNamed:@"JoyStickIdle"];
-        
-        [joyStick setScale:2.0];
-        
-        [joyStick setPosition:CGPointMake(60, 25)];
-        
-        [joyStick setName:@"joyStick"];
-        
-        [self addChild:joyStick];
-        
-        joyStickDefault = [SKAction setTexture:[joyStick texture]];
-        
-        joyStickMovesLeft = [SKAction sequence: @[
-        [SKAction animateWithTextures:playerAnims.joyStickLeftTextures timePerFrame:0.033],
-        joyStickDefault]];
-        
-        joyStickMovesRight = [SKAction sequence: @[
-        [SKAction animateWithTextures:playerAnims.joyStickRightTextures timePerFrame:0.033],
-        joyStickDefault]];
-        
-#pragma - mark "Button A Setup"
-        
-        SKSpriteNode *aButton = [[SKSpriteNode alloc] initWithImageNamed:@"AButtonIdle"];
-        
-        [aButton setScale:1.5];
-        
-        [aButton setName:@"aButton"];
-        
-        [aButton setPosition:CGPointMake(270, 20)];
-        
-        [self addChild:aButton];
-        
-        aButtonDefault = [SKAction setTexture:[aButton texture]];
-        
-        SKAction *aDown = [SKAction animateWithTextures:playerAnims.AButtonTextures timePerFrame:0.033];
-        
-        aButtonDown = [SKAction sequence:@[aDown, aButtonDefault]];
-        
-#pragma - mark "Button B Setup"
-        
-        SKSpriteNode *bButton = [[SKSpriteNode alloc] initWithImageNamed:@"BButtonIdle"];
-        
-        [bButton setScale:1.5];
-        
-        [bButton setName:@"bButton"];
-        
-        [bButton setPosition:CGPointMake(200, 20)];
-
-        
-        [self addChild:bButton];
-        
-        bButtonDefault = [SKAction setTexture:[bButton texture]];
-        
-        SKAction *bDown = [SKAction animateWithTextures:playerAnims.BButtonTextures timePerFrame:0.033];
-        
-        bButtonDown = [SKAction sequence:@[bDown, bButtonDefault]];
-        
-        
-#pragma - mark "Scene Physics Settings"
-        
-        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(self.position.x, self.position.y + 100, self.frame.size.width, self.frame.size.height)];
+        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(scrollingBackground.frame.size.width, self.position.y + 100, self.frame.size.width, self.frame.size.height)];
         
         self.physicsWorld.gravity = CGVectorMake(0.0, -1.5);
         
+#pragma mark - WeaponList
+        weapons = [[NSMutableArray alloc]init];
+        
+        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"Pistol"]];
+        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"RocketLauncher"]];
+        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"BruteShot"]];
+        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"AR"]];
     }
     
     return self;
@@ -190,105 +88,83 @@
         
         [self createSceneContents];
         
-            self.contentCreated = YES;
+        self.contentCreated = YES;
     }
 }
 
-#pragma - mark "Content Creation"
+
+#pragma mark - Content Creation
 
 - (void)createSceneContents {
     
- 
+    [self addChild:staticBackground];
+    
+    [self addChild:scrollingBackground];
+    
+    [self addChild:sexy];
+    
+#pragma mark - Chief Setup
+    
+    chief = [[Chief alloc] initChiefAtPosition:CGPointMake(20, self.size.height / 3 + 7.5)];
+    
+    [self addChild:chief];
+    
 }
 
-#pragma - mark "Touched"
+
+#pragma mark - Touched
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
     UITouch *touch = [touches anyObject];
     
     CGPoint location = [touch locationInNode:self];
     
-    SKNode *joyStick = [self childNodeWithName:@"joyStick"];
-    
-    SKNode *player = [self childNodeWithName:@"player"];
-    
-    SKNode *aButton = [self childNodeWithName:@"aButton"];
-    
-    SKNode *bButton = [self childNodeWithName:@"bButton"];
-    
-    if(CGRectContainsPoint(joyStick.frame, location)) {
-        if(location.x < 60) {
-            [joyStick runAction:joyStickMovesLeft];
-            [player runAction:runsBackwards];
-            
-        } else {
-            if(location.x > 60) {
-                [joyStick runAction:joyStickMovesRight];
-                [player runAction:runsForward];
-                
-            }
-        }
-    } else {
-        if(CGRectContainsPoint(aButton.frame, location)) {
-            [aButton runAction:aButtonDown];
-            [player runAction:throw];
-            
-        } else {
-            if(CGRectContainsPoint(bButton.frame, location)) {
-                [bButton runAction:bButtonDown];
-                [player runAction:crouch];
-            }
-        }
-    }
+    [chief pickUpWeapon:weapons[2]];
+}
 
-   }
-
-#pragma - mark "Touch Moved"
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
     
-    CGPoint location = [touch locationInNode:self];
-    
-    SKNode *joyStick = [self childNodeWithName:@"joyStick"];
-    
-    SKNode *player = [self childNodeWithName:@"player"];
-    
-    if(CGRectContainsPoint(joyStick.frame, location)) {
-        if(location.x < 60) {
-            [joyStick runAction:joyStickMovesLeft];
-            [player runAction:runsBackwards];
-            
-        } else {
-            if(location.x > 60) {
-                [joyStick runAction:joyStickMovesRight];
-                [player runAction:runsForward];
-                
-            }
-        }
-   }
 }
 
 
-#pragma - mark "Touch Ended"
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    SKNode *joyStick = [self childNodeWithName:@"joyStick"];
-    
-    SKNode *aButton = [self childNodeWithName:@"aButton"];
-    
-    SKNode *bButton = [self childNodeWithName:@"bButton"];
-
-    [joyStick runAction:joyStickDefault];
-    
-    [aButton runAction:aButtonDefault];
-    
-    [bButton runAction:bButtonDefault];
 }
 
+#pragma mark - Update
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     
+    [chief setScale:1.0];
     
+    if(scrollingBackground.frame.origin.x + scrollingBackground.frame.size.width < 0)
+        [scrollingBackground setPosition:CGPointMake(800, scrollingBackground.position.y)];
+    else
+        [scrollingBackground setPosition:CGPointMake(scrollingBackground.position.x - 1, scrollingBackground.position.y)];
+    
+    if(sexy.frame.origin.x + sexy.frame.size.width < 0)
+        [sexy setPosition:CGPointMake(800, sexy.position.y)];
+    else
+        [sexy setPosition:CGPointMake(sexy.position.x - 1, sexy.position.y)];
+
 }
+
+- (float)differenceBetweenVectors:(CGPoint)a and:(CGPoint)b {
+    float x = pow((a.x - b.x), 2);
+    float y = pow((a.y - b.y), 2);
+    
+    return sqrt(x + y);
+}
+
+- (CGPoint)addVectors:(CGPoint)a and:(CGPoint)b {
+    float x = a.x + b.x;
+    float y = a.y + b.y;
+    
+    return CGPointMake(x, y);
+}
+
+
 
 @end

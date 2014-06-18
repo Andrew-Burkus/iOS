@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F659FDE1948C55F00B5C8EE /* playerTextures.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F659FDD1948C55F00B5C8EE /* playerTextures.m */; };
+		3F34A0AD195095BE0079012B /* Weapon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F34A0AC195095BE0079012B /* Weapon.m */; };
+		3F47F3DF194F4E10007F3CA6 /* Chief.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47F3DE194F4E10007F3CA6 /* Chief.m */; };
 		3FB6D86D194699D70002A368 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86C194699D70002A368 /* Foundation.framework */; };
 		3FB6D86F194699D70002A368 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D86E194699D70002A368 /* CoreGraphics.framework */; };
 		3FB6D871194699D70002A368 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D870194699D70002A368 /* UIKit.framework */; };
@@ -25,8 +26,6 @@
 		3FB6D898194699D80002A368 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FB6D870194699D70002A368 /* UIKit.framework */; };
 		3FB6D8A0194699D80002A368 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FB6D89E194699D80002A368 /* InfoPlist.strings */; };
 		3FB6D8A2194699D80002A368 /* Adventures_of_TuringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB6D8A1194699D80002A368 /* Adventures_of_TuringTests.m */; };
-		3FCF9B701947431500AA8FC5 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF9B6F1947431500AA8FC5 /* Character.m */; };
-		3FCF9B7319475DE300AA8FC5 /* backGroundLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF9B7219475DE300AA8FC5 /* backGroundLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F659FDC1948C55F00B5C8EE /* playerTextures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerTextures.h; sourceTree = "<group>"; };
-		3F659FDD1948C55F00B5C8EE /* playerTextures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playerTextures.m; sourceTree = "<group>"; };
+		3F34A0AB195095BE0079012B /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
+		3F34A0AC195095BE0079012B /* Weapon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weapon.m; sourceTree = "<group>"; };
+		3F47F3DD194F4E10007F3CA6 /* Chief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chief.h; sourceTree = "<group>"; };
+		3F47F3DE194F4E10007F3CA6 /* Chief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chief.m; sourceTree = "<group>"; };
 		3FB6D869194699D70002A368 /* Adventures of Turing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adventures of Turing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FB6D86C194699D70002A368 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3FB6D86E194699D70002A368 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -65,10 +66,6 @@
 		3FB6D89D194699D80002A368 /* Adventures of TuringTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Adventures of TuringTests-Info.plist"; sourceTree = "<group>"; };
 		3FB6D89F194699D80002A368 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3FB6D8A1194699D80002A368 /* Adventures_of_TuringTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adventures_of_TuringTests.m; sourceTree = "<group>"; };
-		3FCF9B6E1947431500AA8FC5 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
-		3FCF9B6F1947431500AA8FC5 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
-		3FCF9B7119475DE300AA8FC5 /* backGroundLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = backGroundLayer.h; sourceTree = "<group>"; };
-		3FCF9B7219475DE300AA8FC5 /* backGroundLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = backGroundLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,16 +133,11 @@
 				3FB6D883194699D80002A368 /* Main_iPad.storyboard */,
 				3FB6D886194699D80002A368 /* ViewController.h */,
 				3FB6D887194699D80002A368 /* ViewController.m */,
+				3FB6D87A194699D80002A368 /* main.m */,
 				3FB6D889194699D80002A368 /* GameScene.h */,
 				3FB6D88A194699D80002A368 /* GameScene.m */,
-				3FCF9B6E1947431500AA8FC5 /* Character.h */,
-				3FCF9B6F1947431500AA8FC5 /* Character.m */,
-				3F659FDC1948C55F00B5C8EE /* playerTextures.h */,
-				3F659FDD1948C55F00B5C8EE /* playerTextures.m */,
 				3FB6D88E194699D80002A368 /* Images.xcassets */,
 				3FB6D875194699D80002A368 /* Supporting Files */,
-				3FCF9B7119475DE300AA8FC5 /* backGroundLayer.h */,
-				3FCF9B7219475DE300AA8FC5 /* backGroundLayer.m */,
 			);
 			path = "Adventures of Turing";
 			sourceTree = "<group>";
@@ -155,8 +147,11 @@
 			children = (
 				3FB6D876194699D80002A368 /* Adventures of Turing-Info.plist */,
 				3FB6D877194699D80002A368 /* InfoPlist.strings */,
-				3FB6D87A194699D80002A368 /* main.m */,
 				3FB6D87C194699D80002A368 /* Adventures of Turing-Prefix.pch */,
+				3F47F3DD194F4E10007F3CA6 /* Chief.h */,
+				3F47F3DE194F4E10007F3CA6 /* Chief.m */,
+				3F34A0AB195095BE0079012B /* Weapon.h */,
+				3F34A0AC195095BE0079012B /* Weapon.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -281,13 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FCF9B701947431500AA8FC5 /* Character.m in Sources */,
+				3F47F3DF194F4E10007F3CA6 /* Chief.m in Sources */,
 				3FB6D888194699D80002A368 /* ViewController.m in Sources */,
-				3F659FDE1948C55F00B5C8EE /* playerTextures.m in Sources */,
 				3FB6D88B194699D80002A368 /* GameScene.m in Sources */,
 				3FB6D87B194699D80002A368 /* main.m in Sources */,
 				3FB6D87F194699D80002A368 /* spriteAppDelegate.m in Sources */,
-				3FCF9B7319475DE300AA8FC5 /* backGroundLayer.m in Sources */,
+				3F34A0AD195095BE0079012B /* Weapon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

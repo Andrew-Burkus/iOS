@@ -9,6 +9,9 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Chief.h"
 #import "Weapon.h"
+#import "Booton.h"
+#import "KillCounter.h"
+#import "Grunt.h"
 
 @interface GameScene : SKScene
 

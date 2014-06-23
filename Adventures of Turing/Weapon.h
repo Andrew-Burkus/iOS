@@ -12,8 +12,12 @@
 
 - (id)initWeaponNamed:(NSString *)name;
 
-- (void)animate;
-
 @property (strong, nonatomic) NSString *name;
+
+- (SKTexture *)getBulletTexture;
+
+- (NSMutableArray *)getWeaponAnimation;
+
+- (SKTexture *)getWeaponExplosion;
 
 @end

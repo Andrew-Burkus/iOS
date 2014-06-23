@@ -14,90 +14,146 @@
 
 @implementation Chief {
     
-    SKAction *move;
+#pragma mark - Movement
     
     SKAction *moveFast;
     
-    SKAction *walk;
+    SKAction *jumpUp;
+    
+    SKAction *reverseJump;
+    
+#pragma mark - Animations
     
     SKAction *run;
+    
+    SKAction *jump;
+    
+    SKAction *reload;
+    
+    //audio
+    
+    SKAction *reloadGun;
+    
+    SKAction *shot;
 }
+
+            /*****Initiliaze Character*****/
 
 -(id)initChiefAtPosition:(CGPoint)point {
     if([super initWithImageNamed:@"DefaultChief"]) {
         [self setPosition:point];
         [self setUserInteractionEnabled:YES];
-        [self setScale:0.75];
+        [self setScale:1.25];
         
         self.currentWeapon = @"Pistol";
-        
-        self.physicsBody.affectedByGravity = YES;
-        
         moveFast = [SKAction moveToX:self.position.x + 3.5 duration:0.033];
-        move = [SKAction moveToX:self.position.x + 3 duration:0.033];
+        
+            /*****Run*****/
+        
+        NSArray *s = [self loadAnimationFor:@"PistolRun" withFrames:6];
+        SKAction *runAnimation = [SKAction animateWithTextures:s timePerFrame:0.09];
+        SKAction *grouped = [SKAction group:@[moveFast, runAnimation]];
+        run = [SKAction repeatActionForever:grouped];
+        
+        
+            /*****Reload*****/
 
+        NSMutableArray *reloadTextures = [self loadAnimationFor:@"PistolReload" withFrames:7];
+        reload = [SKAction animateWithTextures:reloadTextures timePerFrame:0.1];
         
-        NSMutableArray *textures = [[NSMutableArray alloc] init];
-        [self loadTexturesFor:@"BruteShotWalk" inArray:textures];
-              SKAction *second = [SKAction animateWithTextures:textures timePerFrame:0.09];
-        SKAction *group = [SKAction group:@[move, second]];
-        walk = [SKAction repeatActionForever:group];
+
+            /*****Jump*****/
         
-        NSArray *s = [self loadAnimationFor:@"BruteShotRun" withFrames:6];
+        jumpUp = [SKAction moveToY:self.position.y + 70 duration:0.2];
+        reverseJump = [SKAction moveToY:self.position.y - 1 duration:0.3];
         
-        SKAction *secon = [SKAction animateWithTextures:s timePerFrame:0.09];
-        SKAction *grou = [SKAction group:@[moveFast, secon]];
-        run = [SKAction repeatActionForever:grou];
+        SKTexture *j = [SKTexture textureWithImageNamed:@"PistolJump"];
+        jump = [SKAction sequence:@[[SKAction setTexture:j], jumpUp, reverseJump]];
         
-       // [self runAction:walk];
+        
+            //begin
+        
+        [self runAction:run];
     }
     return  self;
 }
 
-- (void)pickUpWeapon:(Weapon *)weapon {
-    self.currentWeapon = [weapon name];
-    NSString *new = [NSString stringWithFormat:@"%@Walk",self.currentWeapon];
-    
-    NSMutableArray *textures = [self loadAnimationFor:new withFrames:6];
-    NSString *other = [NSString stringWithFormat:@"%@Run",self.currentWeapon];
-    SKAction *animate = [SKAction group: @[[SKAction animateWithTextures:textures timePerFrame:0.09], move]];
-    NSMutableArray *runTextures = [self loadAnimationFor:other withFrames:6];
-    run =[SKAction repeatActionForever:[SKAction group: @[[SKAction animateWithTextures:runTextures timePerFrame:0.08], moveFast]]];
-    walk = [SKAction repeatActionForever:animate];
-    
-    [self runAction:walk];
-}
+
+                /****** Event Handling *****/
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self runAction:run];
     
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
     
-    CGPoint loc = [touch locationInNode:self.parent];
-    
-    [self setPosition:loc];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self removeAllActions];
-    //[self runAction:walk];
+    
 }
 
-- (void)loadTexturesFor:(NSString *)name inArray:(NSMutableArray *)array {
-    
-    for(int i = 1; i <= 6; i++) {
-       NSString *frameName = [NSString stringWithFormat:@"%@%d", name, i];
-        
-        SKTexture *frameToLoad = [SKTexture textureWithImageNamed:frameName];
-        if(frameToLoad)
-            [array addObject:frameToLoad];
-        else
-            return;
-    }
+    /***** Getter *****/
+
+-(NSString *)getCurrentWeapon {
+    return self.currentWeapon;
 }
+
+
+            /***** Responses to Scene Events *****/
+
+-(void)attackResponse {
+    shot = [SKAction playSoundFileNamed:@"PistolShot.mp3" waitForCompletion:YES];
+    [self runAction:shot];
+}
+
+-(void)jumpResponse {
+    [self runAction:jump];
+    SKAction *jumpSound = [SKAction playSoundFileNamed:@"jump.wav" waitForCompletion:YES];
+    [self runAction:jumpSound];
+    [self runAction:run];
+}
+
+-(void)reloadResponse {
+    reloadGun = [SKAction playSoundFileNamed:@"PistolReloadSound.mp3" waitForCompletion:YES];
+    [self runAction:reloadGun];
+    [self runAction:reload];
+}
+
+
+
+
+                        /***** pickUpWeapon Method for ID System ****/
+
+- (void)pickUpWeapon:(Weapon *)weapon {
+    self.currentWeapon = [weapon name];
+    
+        /*****Change Jump*****/
+    
+    NSString *newJump = [NSString stringWithFormat:@"%@Jump",self.currentWeapon];
+    SKTexture *j = [SKTexture textureWithImageNamed:newJump];
+    jump = [SKAction sequence:@[[SKAction setTexture:j], jumpUp, reverseJump]];
+    
+        /*****Change Reload*****/
+    
+    NSString *newReload = [NSString stringWithFormat:@"%@Reload",self.currentWeapon];
+    reload = [SKAction animateWithTextures:
+              [self loadAnimationFor:newReload withFrames:7] timePerFrame:0.1];
+    
+        /*****Change Run*****/
+    
+    NSString *newRun = [NSString stringWithFormat:@"%@Run",self.currentWeapon];
+    
+    run =[SKAction repeatActionForever:
+          [SKAction group: @[[SKAction animateWithTextures:
+                              [self loadAnimationFor:newRun withFrames:6] timePerFrame:0.08], moveFast]]];
+    
+    //resume with new animation
+    
+    [self runAction:run];
+}
+
+            /***** Animation Loader for Memory Conservation*****/
 
 - (NSMutableArray *)loadAnimationFor:(NSString *)name withFrames:(int)frames {
     NSMutableArray *array = [[NSMutableArray alloc] init];

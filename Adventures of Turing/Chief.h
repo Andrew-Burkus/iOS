@@ -17,4 +17,12 @@
 
 -(void)pickUpWeapon:(Weapon *)weapon;
 
+-(void)attackResponse;
+
+-(void)jumpResponse;
+
+-(void)reloadResponse;
+
+-(NSString *)getCurrentWeapon;
+
 @end

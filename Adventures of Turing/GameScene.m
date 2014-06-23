@@ -20,24 +20,55 @@
 
 
 @implementation GameScene {
+    
+        /*****Backgrounds*****/
+    
     SKSpriteNode *staticBackground;
     
     SKSpriteNode *scrollingBackground;
     
+    SKSpriteNode *scrollingBackground2;
+    
+        /*****Buttons*****/
+    
+    Booton *attackButton;
+    
+    Booton *reloadButton;
+    
+    Booton *jumpButton;
+    
+        /*****Icons*****/
+    
+    SKSpriteNode *killsIcon;
+    
+    NSMutableArray *healthIcons;
+    
+        /*****SceneContents*****/
+    
     SKSpriteNode *mysteryBox;
     
-    SKSpriteNode *sexy;
+    Grunt *testGrunt;
+    
+        /*****KillCounter*****/
+    
+    KillCounter *killCounterLeft;
+    
+    KillCounter *killCounterRight;
+    
+    NSString *currentWeapon;
     
     Chief *chief;
     
-    NSMutableArray *weapons;
+        /*****Audio*****/
+    
+    SKAction *throwGrunt;
 }
 
 -(id)initWithSize:(CGSize)size {
     
     if (self = [super initWithSize:size]) {
 
-#pragma mark - Static Background
+            /*****StaticBackground*****/
         
         staticBackground = [SKSpriteNode spriteNodeWithImageNamed:@"USMC"];
         
@@ -45,7 +76,7 @@
         
         [staticBackground setSize:self.size];
         
-#pragma mark - Scrolling Background
+            /*****DynamicBackgrounds*****/
         
         scrollingBackground = [SKSpriteNode spriteNodeWithImageNamed:@"Covenant"];
         
@@ -55,32 +86,74 @@
         
         [scrollingBackground setScale:1.0];
         
-        sexy = [SKSpriteNode spriteNodeWithImageNamed:@"Covenant"];
+                //second...
         
-        [sexy setPosition:CGPointMake(CGRectGetMidX(self.frame) + scrollingBackground.frame.size.width, self.size.height - 55)];
+        scrollingBackground2 = [SKSpriteNode spriteNodeWithImageNamed:@"Covenant"];
         
-        [sexy setSize:self.size];
+        [scrollingBackground2 setPosition:CGPointMake(CGRectGetMidX(self.frame) + scrollingBackground.frame.size.width, self.size.height - 55)];
         
-        [sexy setScale:1.0];
+        [scrollingBackground2 setSize:self.size];
         
-#pragma mark - Physics
+        [scrollingBackground2 setScale:1.0];
         
-        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(scrollingBackground.frame.size.width, self.position.y + 100, self.frame.size.width, self.frame.size.height)];
         
-        self.physicsWorld.gravity = CGVectorMake(0.0, -1.5);
+            /*****Audio*****/
         
-#pragma mark - WeaponList
-        weapons = [[NSMutableArray alloc]init];
         
-        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"Pistol"]];
-        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"RocketLauncher"]];
-        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"BruteShot"]];
-        [weapons addObject:[[Weapon alloc]initWeaponNamed:@"AR"]];
+        
+            /*****Chief Setup*****/
+        
+        chief = [[Chief alloc] initChiefAtPosition:CGPointMake(20, self.size.height / 3 + 18)];
+        
+    
+            /*****Buttons*****/
+        
+        attackButton = [[Booton alloc] initBootonWithImage:@"FireBooton" atPosition:
+                        CGPointMake(30, self.size.height / 3 - 45)];
+        [attackButton setScale:0.15];
+        
+        reloadButton = [[Booton alloc] initBootonWithImage:@"ReloadBooton"
+                                    atPosition:CGPointMake(attackButton.size.width + 50, self.size.height / 3 - 45)];
+        [reloadButton setScale:0.15];
+        
+        jumpButton =  [[Booton alloc]initBootonWithImage:@"JumpBooton"
+                                        atPosition:CGPointMake(self.frame.size.width - 80, attackButton.position.y)];
+        [jumpButton setScale:0.15];
+        
+            /*****Icons*****/
+        
+        killsIcon = [SKSpriteNode spriteNodeWithImageNamed:@"KillsIcon"];
+        [killsIcon setScale:0.15];
+        [killsIcon setPosition:CGPointMake(35, self.frame.size.height - 12)];
+        
+            /*****List of Health Icons for Classical Style*****/
+        
+        healthIcons = [[NSMutableArray alloc]init];
+        float xpos = self.frame.size.width - 120;
+        float ypos = self.frame.size.height - 30;
+        for(int i = 0; i < 3; i++) {
+            healthIcons[i] = [SKSpriteNode spriteNodeWithImageNamed:@"HealthIcon"];
+            [healthIcons[i] setScale:0.1]; [healthIcons[i] setPosition:CGPointMake(xpos, ypos)];
+            xpos += 30;
+        }
+        
+            /*****Classic Counters*****/
+        
+        killCounterLeft = [[KillCounter alloc]initKillCounterAtPosition:
+                       CGPointMake(60, self.frame.size.height - 20)];
+        
+        killCounterRight = [[KillCounter alloc]initKillCounterAtPosition:
+                            CGPointMake(killCounterLeft.position.x + 16,
+                                            killCounterLeft.position.y)];
+        
+            /*****Testing*****/
+        
     }
-    
     return self;
-    
 }
+
+
+#pragma mark - View Confirmation
 
 - (void)didMoveToView: (SKView *) view {
     
@@ -97,36 +170,60 @@
 
 - (void)createSceneContents {
     
+        /***** Backgrounds *****/
+    
     [self addChild:staticBackground];
     
     [self addChild:scrollingBackground];
     
-    [self addChild:sexy];
+    [self addChild:scrollingBackground2];
     
-#pragma mark - Chief Setup
+        /*****Buttons*****/
     
-    chief = [[Chief alloc] initChiefAtPosition:CGPointMake(20, self.size.height / 3 + 7.5)];
+    [self addChild:attackButton];
+    
+    [self addChild:reloadButton];
+    
+    [self addChild:jumpButton];
+    
+        /*****Icons*****/
+    
+    [self addChild:killCounterLeft];
+    
+    [self addChild:killCounterRight];
+    
+    [self addChild:killsIcon];
+    
+    for(int i = 0; i < 3; i++) {
+        [self addChild:healthIcons[i]];
+    }
+    
+        /*****Characters*****/
     
     [self addChild:chief];
     
+        /*****Testing*****/
+    
+    testGrunt = [[Grunt alloc]initGruntAtPosition:
+                 CGPointMake(self.frame.size.width - 100, chief.position.y)];
+    
+    throwGrunt =[SKAction sequence:@[[SKAction repeatActionForever:[SKAction group:@[
+                    [SKAction animateWithTextures:[testGrunt flail] timePerFrame:0.09],
+                    [SKAction moveToX:-50 duration:3.0]]]]]];
+
+    [self addChild:testGrunt];
 }
 
 
-#pragma mark - Touched
+#pragma mark - Event Handling
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
-    UITouch *touch = [touches anyObject];
-    
-    CGPoint location = [touch locationInNode:self];
-    
-    [chief pickUpWeapon:weapons[2]];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
     
 }
-
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
@@ -137,19 +234,74 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     
-    [chief setScale:1.0];
+        /*****Background Movement*****/
     
-    if(scrollingBackground.frame.origin.x + scrollingBackground.frame.size.width < 0)
-        [scrollingBackground setPosition:CGPointMake(800, scrollingBackground.position.y)];
-    else
-        [scrollingBackground setPosition:CGPointMake(scrollingBackground.position.x - 1, scrollingBackground.position.y)];
-    
-    if(sexy.frame.origin.x + sexy.frame.size.width < 0)
-        [sexy setPosition:CGPointMake(800, sexy.position.y)];
-    else
-        [sexy setPosition:CGPointMake(sexy.position.x - 1, sexy.position.y)];
+    if(scrollingBackground.frame.origin.x + scrollingBackground.frame.size.width < 0) {
+        
+        [scrollingBackground setPosition:CGPointMake(750, scrollingBackground.position.y)];
+        
+    } else {
+        [scrollingBackground setPosition:
+         CGPointMake(scrollingBackground.position.x - 1, scrollingBackground.position.y)];
+    }
 
+    if(scrollingBackground2.frame.origin.x + scrollingBackground2.frame.size.width < 0) {
+        
+        [scrollingBackground2 setPosition:CGPointMake(750, scrollingBackground2.position.y)];
+        
+    } else {
+        
+        [scrollingBackground2 setPosition:
+         CGPointMake(scrollingBackground2.position.x - 1, scrollingBackground2.position.y)];
+    }
+    
+        /*****Event Handling Buttons*****/
+    
+    if([attackButton isTouched]) {
+        
+        Weapon *toShoot = [[Weapon alloc]initWeaponNamed:currentWeapon];
+        NSMutableArray *weaponAnimation = [toShoot getWeaponAnimation];
+        SKTexture *projectile = [toShoot getBulletTexture];
+        SKSpriteNode *bullet = [SKSpriteNode spriteNodeWithTexture:projectile];
+        SKSpriteNode *event = [SKSpriteNode spriteNodeWithTexture:weaponAnimation[0]];
+        CGPoint location = CGPointMake(chief.position.x + chief.frame.size.width / 2 + 4,
+                                       chief.position.y + 10);
+        [event setPosition:location];
+        [bullet setPosition:location];
+        
+        SKAction *moveBullet = [SKAction moveToX:self.frame.size.width duration:0.2];
+        SKAction *remove = [SKAction removeFromParent];
+        SKAction *final = [SKAction sequence:@[moveBullet, remove]];
+        SKAction *first = [SKAction animateWithTextures:weaponAnimation timePerFrame:0.033];
+        SKAction *fire = [SKAction sequence:@[first,remove]];
+        
+        [bullet setScale:0.5];
+        [event setScale:1.0];
+        [self addChild:event];
+        [event runAction:fire];
+        [self addChild:bullet];
+        [bullet runAction:final];
+        [chief attackResponse];
+    }
+    
+    if([reloadButton isTouched]) {
+        [chief reloadResponse];
+    }
+    
+    if([jumpButton isTouched]) {
+        [chief jumpResponse];
+    }
+    currentWeapon = [chief getCurrentWeapon];
+    
+        /*****Grunt Checks*****/
+    
+    [testGrunt runAction:throwGrunt];
+    
+    if(testGrunt.position.x < -49) {
+        [testGrunt setPosition:CGPointMake(self.frame.size.width + 1000, testGrunt.position.y)];
+    }
 }
+                                 
 
 - (float)differenceBetweenVectors:(CGPoint)a and:(CGPoint)b {
     float x = pow((a.x - b.x), 2);
